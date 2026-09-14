@@ -1,0 +1,96 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "import difflib\n",
+        "\n",
+        "# Amir Temur va Temur Tuzuklari bo'yicha kengaytirilgan ma'lumotlar bazasi\n",
+        "knowledge_base = {\n",
+        "    \"temur tuzuklari nima\": \"Temur Tuzuklari — Amir Temur tomonidan yozilgan davlat boshqaruvi, qonun-qoidalar, harbiy san'at va saltanat tuzumiga bag'ishlangan buyuk tarixiy-adabiy yodgorlikdir.\",\n",
+        "    \"amir temur kim\": \"Amir Temur (Tamerlan) — buyuk sarkarda, davlat arbobi, Temuriylar imperiyasining asoschisi, ilm-fan, madaniyat va me'morchilik homiysi.\",\n",
+        "    \"tug'ilgan yili\": \"Amir Temur 1336-yil 9-aprelda Kesh (Shahrisabz) yaqinidagi Xoja Ilg'or qishlog'ida tavallud topgan.\",\n",
+        "    \"kelib chiqishi\": \"Amir Temur barlos turkiy qabilasining beklaridan bo'lib, uning otasi Amir Tarag'ay davlat arbobi va ulamolarning homiysi bo'lgan.\",\n",
+        "    \"vafoti\": \"Amir Temur 1405-yil 18-fevralda O'tror shahrida Xitoyga yurish vaqtida vafot etgan. Uning xoki Samarqanddagi Go'ri Amir maqbarasiga qo'yilgan.\",\n",
+        "    \"oilasi va ayollari\": \"Amir Temurning bosh xotini Saroymulkxonim (Katta xonim) bo'lib, u Chingizxon avlodidan edi.\",\n",
+        "    \"farzandlari\": \"Amir Temurning asosiy o'g'illari: Umarshayx, Jahongir, Mironshoh va Shohrux mirzo.\",\n",
+        "    \"adolat haqida\": \"Amir Temurning asosiy shiori: 'Kuch – adolatdadir'. U davlatni boshqarishda qonun ustuvorligiga va adolatga alohida e'tibor qaratgan.\",\n",
+        "    \"davlat boshqaruvi\": \"Temur Tuzuklariga ko'ra, davlat ishlarining o'n dan to'qqiz qismi kengash, tadbir va mashvarat bilan, qolgan bir qismi esa qilich va qat'iyat bilan amalga oshirilgan.\",\n",
+        "    \"farovonlik\": \"Amir Temur o'z saltanatida: 'O'z saltanimda jabr-zulmga uchragan biror kishi qolmasin' deb, xalq farovonligini birinchi o'ringa qo'ygan.\",\n",
+        "    \"armiya tuzilishi\": \"Amir Temur qo'shini o'nlik, yuzlik, minglik va o'n minglik (tuman) tizimiga bo'lingan.\",\n",
+        "    \"anqara jangi\": \"1402-yilda Anqara jangida Usmonli sultoni Boyazid Yildirim ustidan g'alaba qozongan.\",\n",
+        "    \"poytaxt\": \"Amir Temur saltanatining poytaxti — ilm-fan va madaniyat markaziga aylantirilgan Samarqand shahri bo'lgan.\"\n",
+        "}\n",
+        "\n",
+        "def ai_assistant(user_question):\n",
+        "    user_question = user_question.lower()\n",
+        "    questions = list(knowledge_base.keys())\n",
+        "    match = difflib.get_close_matches(user_question, questions, n=1, cutoff=0.2)\n",
+        "\n",
+        "    if match:\n",
+        "        return knowledge_base[match[0]]\n",
+        "    else:\n",
+        "        return \"Kechirasiz, bu savol bo'yicha hozircha bazamda ma'lumot yo'q.\"\n",
+        "\n",
+        "print(\"--- Temur Tuzuklari AI Yordamchisiga Xush Kelibsiz! ---\")\n",
+        "while True:\n",
+        "    q = input(\"\\nSavol bering (chiqish uchun 'exit' yozing): \")\n",
+        "    if q.lower() == 'exit':\n",
+        "        break\n",
+        "    answer = ai_assistant(q)\n",
+        "    print(\"AI Javobi:\", answer)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 478
+        },
+        "id": "B6MVheg8ApbH",
+        "outputId": "79e526a2-4c8d-41c6-c637-eb9b3d7475bf"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Temur Tuzuklari AI Yordamchisiga Xush Kelibsiz! ---\n",
+            "\n",
+            "Savol bering (chiqish uchun 'exit' yozing): temur nechinchi yilda tug'ilgan\n",
+            "AI Javobi: Temur Tuzuklari — Amir Temur tomonidan yozilgan davlat boshqaruvi, qonun-qoidalar, harbiy san'at va saltanat tuzumiga bag'ishlangan buyuk tarixiy-adabiy yodgorlikdir.\n",
+            "\n",
+            "Savol bering (chiqish uchun 'exit' yozing): Amur temur nechinchi yilda tug'ilgan\n",
+            "AI Javobi: Amir Temur (Tamerlan) — buyuk sarkarda, davlat arbobi, Temuriylar imperiyasining asoschisi, ilm-fan, madaniyat va me'morchilik homiysi.\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "KeyboardInterrupt",
+          "evalue": "Interrupted by user",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m                         Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_2542/2481556288.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     30\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"--- Temur Tuzuklari AI Yordamchisiga Xush Kelibsiz! ---\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     31\u001b[0m \u001b[0;32mwhile\u001b[0m \u001b[0;32mTrue\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 32\u001b[0;31m     \u001b[0mq\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0minput\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"\\nSavol bering (chiqish uchun 'exit' yozing): \"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     33\u001b[0m     \u001b[0;32mif\u001b[0m \u001b[0mq\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mlower\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;34m'exit'\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     34\u001b[0m         \u001b[0;32mbreak\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.13/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36mraw_input\u001b[0;34m(self, prompt)\u001b[0m\n\u001b[1;32m   1175\u001b[0m                 \u001b[0;34m\"raw_input was called, but this frontend does not support input requests.\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1176\u001b[0m             )\n\u001b[0;32m-> 1177\u001b[0;31m         return self._input_request(\n\u001b[0m\u001b[1;32m   1178\u001b[0m             \u001b[0mstr\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mprompt\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1179\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_parent_ident\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"shell\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.13/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36m_input_request\u001b[0;34m(self, prompt, ident, parent, password)\u001b[0m\n\u001b[1;32m   1217\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1218\u001b[0m                 \u001b[0;31m# re-raise KeyboardInterrupt, to truncate traceback\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1219\u001b[0;31m                 \u001b[0;32mraise\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Interrupted by user\"\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1220\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mException\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1221\u001b[0m                 \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mlog\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwarning\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Invalid Message:\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mexc_info\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mTrue\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m: Interrupted by user"
+          ]
+        }
+      ]
+    }
+  ]
+}
